@@ -13,7 +13,6 @@ workdir /app
 copy ./products ./products
 copy --from=builder /app/product-catalog ./
 
-expose ${product_catalog_port}
 
 env product_catalog_port=8088
 
