@@ -1,28 +1,32 @@
-FROM eclipse-temurin:21-jdk AS builder
+from eclipse-temurin:21-jdk as builder
+workdir /app
+copy . .
 
-WORKDIR /usr/src/app/
+run chmod +x gradlew
+run ./gradlew
+run ./gradlew downloadRepos
 
-COPY gradlew* settings.gradle* build.gradle .
-COPY ./gradle ./gradle
+copy ./pb ./proto
 
-RUN chmod +x ./gradlew
-RUN ./gradlew
-RUN ./gradlew downloadRepos
+run chmod +x gradlew
 
-COPY . .
-COPY ./pb ./proto
-RUN chmod +x ./gradlew
-RUN ./gradlew installDist -PprotoSourceDir=./proto
+run ./gradlew installDist -PprotoSourceDir=./proto
 
 #####################################################
 
-FROM eclipse-temurin:21-jre
+from eclipse-temurin:21-jre
+workdir /app
 
-WORKDIR /usr/src/app/
+copy --from=builder /app/build/install/opentelemetry-demo-ad ./build/install/opentelemetry-demo-ad
 
-COPY --from=builder /usr/src/app/ ./
 
-ENV AD_PORT 9099
 
-ENTRYPOINT ["./build/install/opentelemetry-demo-ad/bin/Ad"]
+
+env AD_PORT=9099
+
+entrypoint ["./build/install/opentelemetry-demo-ad/bin/Ad"]
+
+
+
+
 
