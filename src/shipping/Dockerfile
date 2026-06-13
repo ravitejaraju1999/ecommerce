@@ -9,7 +9,7 @@
 ARG RUST_VERSION=1.76
 ARG APP_NAME=shipping
 
-################################################################################
+################################################################
 # Create a stage for building the application.
 
 FROM rust:${RUST_VERSION}-alpine AS build
