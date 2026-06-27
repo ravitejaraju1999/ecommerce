@@ -5,13 +5,13 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Target URL to test
-URL = "http://raviteja.store"
+URL = "http://ec2-54-167-34-77.compute-1.amazonaws.com:8080/"
 
 # Total number of requests to send
-TOTAL_REQUESTS = 5000
+TOTAL_REQUESTS = 10000
 
 # Number of concurrent users (threads)
-CONCURRENT_USERS = 300
+CONCURRENT_USERS = 3
 
 # Counters for successful and failed requests
 success = 0
