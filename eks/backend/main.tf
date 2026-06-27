@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "ecommerce-terraform-eks-state"
+  bucket = "remote-ecommerce-terraform-eks-state"
 
   lifecycle {
     prevent_destroy = false

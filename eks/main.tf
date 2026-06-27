@@ -7,10 +7,10 @@ terraform {
         }
     }
     backend "s3" {
-        bucket = "ecommerce-terraform-eks-state"
+        bucket = "remote-ecommerce-terraform-eks-state"
         key    = "eks/terraform.tfstate"
         region = "us-east-1"
-        dynamodb_table = "ecommerce-terraform-eks-state-lock"
+        dynamodb_table = "remote-ecommerce-terraform-eks-state-lock"
         encrypt = true
 }
 }
