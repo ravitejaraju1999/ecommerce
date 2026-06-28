@@ -309,11 +309,22 @@ func (p *productCatalog) checkProductFailure(ctx context.Context, id string) boo
 	return failureEnabled
 }
 
+func createClientConn(ctx context.Context, target string) (*grpc.ClientConn, error) {
+	return grpc.DialContext(
+		ctx,
+		svcAddr,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
+	)
+}
 
 
 
 
-//ravi
+
+
+
+
 
 
 
